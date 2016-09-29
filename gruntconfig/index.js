@@ -23,7 +23,7 @@ var gruntConfig = {
     'grunt-contrib-copy',
     'grunt-contrib-uglify',
     'grunt-contrib-watch',
-    'grunt-mocha-phantomjs',
+    //'grunt-mocha-phantomjs',
     'grunt-postcss',
     'gruntify-eslint'
   ]

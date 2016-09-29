@@ -62,7 +62,7 @@ var watch = {
       'eslint:tests',
       'copy:test',
       'browserify:test',
-      'mocha_phantomjs'
+      //'mocha_phantomjs'
     ]
   }
 
