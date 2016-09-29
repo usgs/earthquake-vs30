@@ -9,3 +9,8 @@ if (!file_exists($CONFIG_INI_FILE)) {
 }
 
 $CONFIG = parse_ini_file($CONFIG_INI_FILE);
+
+if (!isset($NO_DB) || $NO_DB !== true) {
+  $DB = new PDO($CONFIG['DB_DSN'], $CONFIG['DB_USER'], $CONFIG['DB_PASS']);
+  $DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}

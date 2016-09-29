@@ -13,6 +13,24 @@ $PROMPTS = array(
     'prompt' => 'URL Path for application',
     'default' => '/data/vs30/us',
     'secure' => false
+  ),
+
+  'DB_DSN' => array(
+    'prompt' => 'Database connection string',
+    'default' => '',
+    'secure' => false
+  ),
+
+  'DB_USER' => array(
+    'prompt' => 'Read only database username',
+    'default' => null,
+    'secure' => false
+  ),
+  
+  'DB_PASS' => array(
+    'prompt' => 'Read only database password',
+    'default' => null,
+    'secure' => true
   )
 
 );
