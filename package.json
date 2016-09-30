@@ -39,6 +39,8 @@
     "hazdev-template": "0.2.4",
     "hazdev-webutils": "0.1.8",
     "ini": "1.2.1",
+    "leaflet": "leaflet/Leaflet#0.7",
+    "leaflet.markercluster": "leaflet/Leaflet.markercluster#leaflet-0.7",
     "mocha": "2.1.0",
     "postcss-calc": "5.0.0",
     "postcss-import": "7.1.0",
