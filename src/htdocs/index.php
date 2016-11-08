@@ -4,10 +4,8 @@
   // Last modified: 11/08/2016, Scott Haefner
   if (!isset($TEMPLATE)) {
     $TITLE = 'A Compilation of <i>V</i><sub><i>S</i>30</sub> Values in the United States';
-    $HEAD = '
-      <link rel="stylesheet" href="/lib/leaflet-0.7.7/leaflet.css"/> 
-      <link rel="stylesheet" href="css/index.css"/>
-    ';
+    $HEAD = '<link rel="stylesheet" href="/lib/leaflet-0.7.7/leaflet.css"/>';
+    $HEAD .= '<link rel="stylesheet" href="css/index.css"/>';
     $FOOT = '
       <script src="/lib/leaflet-0.7.7/leaflet.js"></script>
       <script src="js/index.js"></script>
