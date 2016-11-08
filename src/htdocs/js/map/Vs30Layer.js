@@ -14,7 +14,7 @@ _MARKER_DEFAULTS = {
   fillOpacity: 0.6,
   opacity: 0.8,
   radius: 8,
-  weight: 2
+  weight: 1
 };
 _DEFAULTS = {
   data: {},
