@@ -10,7 +10,7 @@ include_once 'colorScale.inc.php';
 $colors = getColorScale();
 
 // query db
-$sql = 'SELECT * FROM vs30
+$sql = 'SELECT * FROM vs30_us
   WHERE `lat` != 0 AND `lng` != 0
   ORDER BY `name` ASC';
 

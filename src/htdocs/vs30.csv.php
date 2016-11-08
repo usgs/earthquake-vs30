@@ -12,12 +12,12 @@ $params['lngmin'] = safeParam('lngmin', -180);
 $params['lngmax'] = safeParam('lngmax', 180);
 
 // query db
-$sql = 'SELECT `index`, `lat`, `lng`, `datum`, `net_sta`, `name`, `method`, 
-  `vs30`, `d_max`, `contact`, `reference`, `url`, `s_geology`, `src_geology`, 
+$sql = 'SELECT `index`, `lat`, `lng`, `datum`, `net_sta`, `name`, `method`,
+  `vs30`, `d_max`, `contact`, `reference`, `url`, `s_geology`, `src_geology`,
   `comments`
-    FROM vs30
-    WHERE `lat` >= :latmin AND `lat` <= :latmax 
-      AND `lng` >= :lngmin AND `lng` <= :lngmax 
+    FROM vs30_us
+    WHERE `lat` >= :latmin AND `lat` <= :latmax
+      AND `lng` >= :lngmin AND `lng` <= :lngmax
       AND `lat` != 0 AND `lng` != 0
     ORDER BY `index` ASC;';
 
@@ -27,7 +27,7 @@ try {
     ':latmin' => $params['latmin'],
     ':latmax' => $params['latmax'],
     ':lngmin' => $params['lngmin'],
-    ':lngmax' => $params['lngmax']    
+    ':lngmax' => $params['lngmax']
   ]);
 } catch(Exception $e) {
   print '<p class="alert error">ERROR 2: ' . $e->getMessage() . '</p>';
@@ -49,7 +49,11 @@ fwrite($output, "# URL:  website containing source data or report (last accessed
 fwrite($output, "# Geologic Map Unit(s)/Material(s): geologic map unit(s) or subsurface material(s) as described by investigator(s); see accompanying report for description of geologic nomenclature.\n");
 */
 
-fputcsv($output, array('Id', 'Latitude', 'Longitude', 'Datum', 'Network/Station Code', 'Station Name', 'Method', 'Vs30 (m/s)', 'Max Depth (m)', 'Contact', 'Reference', 'URL', 'Geologic Map Unit(s)/Material(s)', 'Geologic Data Source', 'Comments'));
+fputcsv($output, array('Id', 'Latitude', 'Longitude', 'Datum',
+  'Network/Station Code', 'Station Name', 'Method', 'Vs30 (m/s)', 'Max Depth (m)',
+  'Contact', 'Reference', 'URL', 'Geologic Map Unit(s)/Material(s)',
+  'Geologic Data Source', 'Comments')
+);
 
 while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
 	fputcsv($output, $row);
