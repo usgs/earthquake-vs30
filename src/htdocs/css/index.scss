@@ -14,30 +14,49 @@ input[type=checkbox], input[type=radio] {
   height: 600px;
 }
 
-.popup {
-  h1 {
-    margin: .75em 0;
+@media all and (max-height: 667px) {
+  .map {
+    height: 500px;
   }
+}
+
+@media all and (max-height: 500px) {
+  .map {
+    height: 400px;
+  }
+}
+
+@media all and (max-height: 400px) {
+  .map {
+    height: 300px;
+  }
+}
+
+.popup {
   table {
-    line-height: 1.5;
+    font-size: 1em;
   }
   td, th {
+    background: none;
+    border: none;
     border-bottom: 1px solid #EFEFEF;
-    padding: 4px 0;
   }
   tr:last-child td, tr:last-child th {
     border: 0;
   }
   th {
-    padding-right: 1em;
+    padding-left: 0;
     white-space: nowrap;
     font-weight: 500;
   }
 }
 
 .scale {
+  circle {
+    stroke-opacity: .8;
+    fill-opacity: .6;
+  }
   li {
-    list-style: none;
     margin: 0 12px 0 0;
     display: inline-block;
   }
