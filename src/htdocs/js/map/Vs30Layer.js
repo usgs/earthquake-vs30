@@ -4,6 +4,8 @@
 
 var Util = require('util/Util');
 
+require('leaflet.markercluster');
+
 
 var _DEFAULTS,
     _MARKER_DEFAULTS;
@@ -12,7 +14,7 @@ _MARKER_DEFAULTS = {
   fillOpacity: 0.6,
   opacity: 0.8,
   radius: 8,
-  weight: 2
+  weight: 1
 };
 _DEFAULTS = {
   data: {},
@@ -36,7 +38,6 @@ var Vs30Layer = function (options) {
       _initialize,
 
       _bounds,
-      _cluster,
       _markerOptions,
 
       _onEachFeature,
@@ -49,20 +50,19 @@ var Vs30Layer = function (options) {
     options = Util.extend({}, _DEFAULTS, options);
 
     _bounds = new L.LatLngBounds();
-    _cluster = new L.MarkerClusterGroup({
+    _markerOptions = Util.extend({}, _MARKER_DEFAULTS, options.markerOptions);
+
+    _this.cluster = new L.MarkerClusterGroup({
       showCoverageOnHover: false,
       maxClusterRadius: 60,
       disableClusteringAtZoom: 9
     });
-    _markerOptions = Util.extend({}, _MARKER_DEFAULTS, options.markerOptions);
+    _this.count = options.data.metadata.count;
 
     L.geoJson(options.data, {
       onEachFeature: _onEachFeature,
       pointToLayer: _pointToLayer
     });
-
-    _this.cluster = _cluster;
-    _this.count = options.data.metadata.count;
   };
 
 
@@ -124,7 +124,10 @@ var Vs30Layer = function (options) {
     _markerOptions.fillColor = feature.properties.color;
 
     marker = L.circleMarker(latlng, _markerOptions);
-    _cluster.addLayer(marker);
+
+    // Add marker to layer and cluster
+    _this.addLayer(marker);
+    _this.cluster.addLayer(marker);
 
     return marker;
   };

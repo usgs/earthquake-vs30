@@ -2,28 +2,11 @@
 'use strict';
 
 
-/*
-
-function addMarkersLayer() {
-  $('.number').html(count);
-
-  // either display indiv. markers or cluster
-  if (count > 300) {
-    map.addLayer(cluster);
-  } else {
-    map.addLayer(markers);
-  }
-  initDownloadLink();
-}
-
-*/
-
 var Xhr = require('util/Xhr');
 
-require('leaflet.markercluster');
-
 // Factories for creating map layers
-//require('SatelliteLayer');
+require('map/GreyscaleLayer');
+require('map/SatelliteLayer');
 require('map/TerrainLayer');
 require('map/Vs30Layer.js');
 
@@ -72,16 +55,19 @@ var Map = function (options) {
    */
   _getMapLayers = function () {
     var layers,
-        //satellite,
+        greyscale,
+        satellite,
         terrain;
 
-    //satellite = L.satelliteLayer();
+    greyscale = L.greyscaleLayer();
+    satellite = L.satelliteLayer();
     terrain = L.terrainLayer();
 
     layers = {};
     layers.baseLayers = {
-      'Terrain': terrain
-      //'Satellite': satellite
+      'Terrain': terrain,
+      'Greyscale': greyscale,
+      'Satellite': satellite
     };
     layers.overlays = {
       '<i>V</i><sub><i>S</i>30</sub>': _vs30
@@ -90,7 +76,7 @@ var Map = function (options) {
 
     return layers;
   };
-  
+
   /**
    * Get querystring to limit csv table to current map extent
    *
@@ -110,7 +96,7 @@ var Map = function (options) {
 
     return qs;
   };
-  
+
   /**
    * Create / update link for downloading only points visible on map
    */
@@ -122,11 +108,11 @@ var Map = function (options) {
     li = document.createElement('li');
     querystring = _getQueryString();
     uri = './vs30.csv.php';
-    
-    li.innerHTML = '<a href="' + uri + querystring + 
+
+    li.innerHTML = '<a href="' + uri + querystring +
       '" download class="extent">Only data points within the current map extent</a>';
     document.querySelector('.downloads').appendChild(li);
-    
+
     _map.on('moveend', function() {
       var querystring = _getQueryString();
 
@@ -147,12 +133,12 @@ var Map = function (options) {
       layers: layers.defaults,
       scrollWheelZoom: false
     });
-    
+
     // Set intial map extent to contain Vs30 overlay
     bounds = _vs30.getBounds();
     _map.fitBounds(bounds);
 
-    L.control.layers().addTo(_map);
+    L.control.layers(layers.baseLayers, layers.overlays).addTo(_map);
     L.control.scale().addTo(_map);
 
     _initDownloadLink();
@@ -172,7 +158,7 @@ var Map = function (options) {
         _vs30 = L.vs30Layer({
           data: data
         });
-        
+
         _initMap();
       },
       error: function (status) {
@@ -180,7 +166,7 @@ var Map = function (options) {
       }
     });
   };
-  
+
 
   _initialize(options);
   options = null;

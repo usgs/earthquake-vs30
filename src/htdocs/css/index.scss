@@ -1,43 +1,83 @@
 @import 'MarkerCluster.css';
 @import 'MarkerCluster.Default';
 
+/* template's css is getting the way */
+input[type=checkbox], input[type=radio] {
+  display: inline;
+  height: auto;
+  opacity: 1;
+  position: static;
+  width: auto;
+}
+
 .map {
   height: 600px;
 }
 
-.scale li {
-  list-style: none;
-  margin: 0 12px 0 0;
-  display: inline-block;
-}
-.scale svg {
-  width: 18px;
-  height: 18px;
-  float: left;
-}
-.scale span {
-  margin-left: 3px;
-  display: block;
-  float: left;
+@media all and (max-height: 667px) {
+  .map {
+    height: 500px;
+  }
 }
 
-.popup h1 {
-  margin: .75em 0;
+@media all and (max-height: 500px) {
+  .map {
+    height: 400px;
+  }
 }
-.popup table {
-  line-height: 1.5;
+
+@media all and (max-height: 400px) {
+  .map {
+    height: 300px;
+  }
 }
-.popup td, .popup th {
-  border-bottom: 1px solid #EFEFEF;
-  padding: 4px 0;
+
+.popup {
+  table {
+    font-size: 1em;
+  }
+  td, th {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #EFEFEF;
+  }
+  tr:last-child td, tr:last-child th {
+    border: 0;
+  }
+  th {
+    padding-left: 0;
+    white-space: nowrap;
+    font-weight: 500;
+  }
 }
-.popup tr:last-child th, .popup tr:last-child td {
-  border: 0;
+
+.scale {
+  circle {
+    stroke-opacity: .8;
+    fill-opacity: .6;
+  }
+  li {
+    margin: 0 12px 0 0;
+    display: inline-block;
+  }
+  span {
+    margin-left: 3px;
+    display: block;
+    float: left;
+  }
+  svg {
+    width: 18px;
+    height: 18px;
+    float: left;
+  }
 }
-.popup th {
-  padding-right: 1em;
+
+/* Quell long attributions */
+.leaflet-control-attribution {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
-  font-weight: 500;
 }
 
 /* override markerclusterer colors b/c they conflict with vs30 colors */
