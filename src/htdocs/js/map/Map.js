@@ -150,7 +150,7 @@ var Map = function (options) {
   _loadVs30Layer = function () {
     var url;
 
-    url = '/data/vs30/us/vs30.json.php';
+    url = 'vs30.json.php';
 
     Xhr.ajax({
       url: url,
