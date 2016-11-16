@@ -19,8 +19,6 @@ var SatelliteLayer = function (provider, options) {
       _places,
       _placesUrl,
       _providers,
-      _transportation,
-      _transportationUrl,
       _url;
 
   _providers = {
@@ -50,8 +48,6 @@ var SatelliteLayer = function (provider, options) {
   if (provider === 'esri') {
     _placesUrl = 'http://{s}.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}';
     _places = L.tileLayer(_placesUrl, options);
-    _transportationUrl = 'http://{s}.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}';
-    _transportation = L.tileLayer(_transportationUrl, options);
     return L.layerGroup([_base, _places]);
   } else {
     return _base;

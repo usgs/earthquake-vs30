@@ -30,7 +30,8 @@ try {
     ':lngmax' => $params['lngmax']
   ]);
 } catch(Exception $e) {
-  print '<p class="alert error">ERROR 2: ' . $e->getMessage() . '</p>';
+  print '<p class="alert error">ERROR: ' . $e->getMessage() . '</p>';
+  exit;
 }
 
 // turn on output buffering so we can set content length header after csv file is complete
@@ -56,7 +57,7 @@ fputcsv($output, array('Id', 'Latitude', 'Longitude', 'Datum',
 );
 
 while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
-	fputcsv($output, $row);
+  fputcsv($output, $row);
 }
 
 $content_length = ob_get_length();
@@ -65,9 +66,6 @@ $content_length = ob_get_length();
 header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=vs30data.csv');
 header("Content-Length: " . $content_length);
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
 
 // send content (output buffer)
 ob_end_flush();
