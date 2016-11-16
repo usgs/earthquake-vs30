@@ -30,7 +30,8 @@ try {
     ':lngmax' => $params['lngmax']
   ]);
 } catch(Exception $e) {
-  print '<p class="alert error">ERROR 2: ' . $e->getMessage() . '</p>';
+  print '<p class="alert error">ERROR: ' . $e->getMessage() . '</p>';
+  exit;
 }
 
 // turn on output buffering so we can set content length header after csv file is complete

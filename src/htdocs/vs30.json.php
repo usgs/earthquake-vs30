@@ -3,6 +3,8 @@
 include_once '../conf/config.inc.php'; // app config
 include_once '../lib/_functions.inc.php'; // app functions
 
+header('Content-Type: application/json');
+
 // import array containing color scale
 include_once 'colorScale.inc.php';
 $colors = getColorScale();
@@ -16,7 +18,8 @@ try {
   $rsPoints = $DB->prepare($sql);
   $rsPoints->execute();
 } catch(Exception $e) {
-  print '<p class="alert error">ERROR 2: ' . $e->getMessage() . '</p>';
+  print '{"ERROR": "' . $e->getMessage() . '"}';
+  exit;
 }
 
 $points = array(
@@ -58,7 +61,6 @@ while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
 }
 
 // Create json object from array and display
-header('Content-Type: application/json');
 $json = json_encode($points);
 print $json;
 
