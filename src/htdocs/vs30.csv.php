@@ -56,7 +56,7 @@ fputcsv($output, array('Id', 'Latitude', 'Longitude', 'Datum',
 );
 
 while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
-	fputcsv($output, $row);
+  fputcsv($output, $row);
 }
 
 $content_length = ob_get_length();
