@@ -3,8 +3,6 @@
 include_once '../conf/config.inc.php'; // app config
 include_once '../lib/_functions.inc.php'; // app functions
 
-$callback = safeParam('callback');
-
 // import array containing color scale
 include_once 'colorScale.inc.php';
 $colors = getColorScale();
@@ -62,11 +60,7 @@ while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
 // Create json object from array and display
 header('Content-Type: application/json');
 $json = json_encode($points);
-if ($callback) {
-  printf ('%s(%s);', $callback, $json);
-} else {
-  print $json;
-}
+print $json;
 
 // Get color code for given depth
 function getColor($num) {
