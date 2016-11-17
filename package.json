@@ -1,6 +1,6 @@
 {
   "name": "earthquake-vs30",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Vs30 data for the U.S.",
   "repository": {
     "type": "git",
