@@ -70,9 +70,9 @@ var Map = function (options) {
       'Satellite': satellite
     };
     layers.overlays = {
-      '<i>V</i><sub><i>S</i>30</sub>': _vs30
+      '<i>V</i><sub><i>S</i>30</sub>': _vs30.cluster
     };
-    layers.defaults = [terrain, _vs30];
+    layers.defaults = [terrain, _vs30.cluster];
 
     return layers;
   };
