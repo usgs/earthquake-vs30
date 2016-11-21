@@ -30,7 +30,8 @@ var Map = function (options) {
       _getQueryString,
       _initDownloadLink,
       _initMap,
-      _loadVs30Layer;
+      _loadVs30Layer,
+      _updateNumStations;
 
   _this = {};
 
@@ -160,11 +161,19 @@ var Map = function (options) {
         });
 
         _initMap();
+        _updateNumStations(_vs30.count);
       },
       error: function (status) {
         console.log(status);
       }
     });
+  };
+
+  _updateNumStations = function (count) {
+    var span;
+
+    span = document.querySelector('.count');
+    span.innerHTML = count;
   };
 
 
