@@ -50,7 +50,7 @@
   in the upper 30 meters, is a key index adopted by the earthquake engineering
   community to account for seismic site conditions. USGS has compiled measured
   <i>V</i><sub><i>S</i>30</sub> funded by the USGS and other governmental
-  agencies for <span class="number">approximately 3000</span> sites in the
+  agencies for <span class="count">approximately 3000</span> sites in the
   United States.</p>
 
 <div class="map"></div>
