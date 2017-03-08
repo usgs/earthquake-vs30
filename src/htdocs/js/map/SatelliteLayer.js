@@ -19,6 +19,8 @@ var SatelliteLayer = function (provider, options) {
       _places,
       _placesUrl,
       _providers,
+      _transportation,
+      _transportationUrl,
       _url;
 
   _providers = {
@@ -30,11 +32,11 @@ var SatelliteLayer = function (provider, options) {
       url: 'https://{s}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
     },
     mapquest: {
-      attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> ' +
+      attribution: 'Tiles Courtesy of <a href="https://www.mapquest.com/">MapQuest</a> ' +
         '&mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of ' +
         'Agriculture, Farm Service Agency',
       subdomains: '1234',
-      url: 'http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg'
+      url: 'https://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg'
     }
   };
 
@@ -46,9 +48,12 @@ var SatelliteLayer = function (provider, options) {
 
   // Esri satellite layer doesn't inlcude labels; add them
   if (provider === 'esri') {
-    _placesUrl = 'http://{s}.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}';
+    _placesUrl = 'https://{s}.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}';
     _places = L.tileLayer(_placesUrl, options);
-    return L.layerGroup([_base, _places]);
+    _transportationUrl = 'https://{s}.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}';
+    _transportation = L.tileLayer(_transportationUrl, options);
+
+    return L.layerGroup([_base, _places, _transportation]);
   } else {
     return _base;
   }

@@ -80,6 +80,9 @@ var Vs30Layer = function (options) {
         props;
 
     props = feature.properties;
+    if (Math.round(props.d_max) === 0) {
+      props.d_max = 'N/A'; // '0.0 not being converted to N/A below'
+    }
     data = {
       d_max: props.d_max + ' m' || 'N/A',
       index: props.index,

@@ -5,6 +5,7 @@
 var Xhr = require('util/Xhr');
 
 // Factories for creating map layers
+require('map/DarkLayer');
 require('map/GreyscaleLayer');
 require('map/SatelliteLayer');
 require('map/TerrainLayer');
@@ -55,11 +56,13 @@ var Map = function (options) {
    *    }
    */
   _getMapLayers = function () {
-    var layers,
+    var dark,
+        layers,
         greyscale,
         satellite,
         terrain;
 
+    dark = L.darkLayer();
     greyscale = L.greyscaleLayer();
     satellite = L.satelliteLayer();
     terrain = L.terrainLayer();
@@ -67,8 +70,9 @@ var Map = function (options) {
     layers = {};
     layers.baseLayers = {
       'Terrain': terrain,
+      'Satellite': satellite,
       'Greyscale': greyscale,
-      'Satellite': satellite
+      'Dark': dark
     };
     layers.overlays = {
       '<i>V</i><sub><i>S</i>30</sub>': _vs30.cluster
