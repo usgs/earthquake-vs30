@@ -81,12 +81,12 @@ var Vs30Layer = function (options) {
 
     props = feature.properties;
     if (parseFloat(props.d_max) === 0) {
-      props.d_max = 'N/A';
+      props.d_max = 'NA';
     } else {
       props.d_max += ' m';
     }
     if (parseFloat(props.vs30) === 0) {
-      props.vs30 = 'N/A';
+      props.vs30 = 'NA';
     } else {
       props.vs30 += ' m/s';
     }
@@ -94,9 +94,9 @@ var Vs30Layer = function (options) {
     data = {
       d_max: props.d_max,
       index: props.index,
-      method: props.method || 'N/A',
-      name: props.name || 'N/A',
-      net_sta: props.net_sta || 'N/A',
+      method: props.method || 'NA',
+      name: props.name || 'NA',
+      net_sta: props.net_sta || 'NA',
       vs30: props.vs30
     };
 
