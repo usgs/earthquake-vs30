@@ -80,16 +80,24 @@ var Vs30Layer = function (options) {
         props;
 
     props = feature.properties;
-    if (Math.round(props.d_max) === 0) {
-      props.d_max = 'N/A'; // '0.0 not being converted to N/A below'
+    if (parseFloat(props.d_max) === 0) {
+      props.d_max = 'N/A';
+    } else {
+      props.d_max += ' m';
     }
+    if (parseFloat(props.vs30) === 0) {
+      props.vs30 = 'N/A';
+    } else {
+      props.vs30 += ' m/s';
+    }
+
     data = {
-      d_max: props.d_max + ' m' || 'N/A',
+      d_max: props.d_max,
       index: props.index,
       method: props.method || 'N/A',
       name: props.name || 'N/A',
       net_sta: props.net_sta || 'N/A',
-      vs30: props.vs30 + ' m/s' || 'N/A',
+      vs30: props.vs30
     };
 
     popupTemplate = '<div class="popup">' +
