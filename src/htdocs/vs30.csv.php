@@ -57,6 +57,9 @@ fputcsv($output, array('Id', 'Latitude', 'Longitude', 'Datum',
 );
 
 while ($row = $rsPoints->fetch(PDO::FETCH_ASSOC)) {
+  if (floatval($row['d_max']) == 0) {
+    $row['d_max'] = 'NA';
+  }
   fputcsv($output, $row);
 }
 
