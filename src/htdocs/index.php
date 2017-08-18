@@ -69,7 +69,7 @@
 <h2>Suggested Citation</h2>
 <ul class="referencelist">
   <li>Yong, A., Thompson, E.M., Wald, D., Knudsen, K.L., Odum, J.K., Stephenson,
-    W.J., and Haefner, S., 2015, Compilation of <i>V</i><sub><i>S</i>30</sub>
+    W.J., and Haefner, S., 2016, Compilation of <i>V</i><sub><i>S</i>30</sub>
     Data for the United States: U.S. Geological Survey Data Series 978, 8 p.,
     <a href="http://dx.doi.org/10.3133/ds978">http://dx.doi.org/10.3133/ds978</a>.
   </li>
